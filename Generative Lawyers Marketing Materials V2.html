@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generative Lawyers — The Future of Legal Practice</title>
+<style>
+/* ==================== GLOBAL & VARIABLES ==================== */
+:root {
+  --navy: #0b1e33;
+  --deep-blue: #142d45;
+  --gold: #d4af37;
+  --gold-hover: #b5952f;
+  --light-bg: #f4f7f9;
+  --text-main: #2c3e50;
+  --text-light: #6b7f94;
+  --white: #ffffff;
+  --emerald: #27ae60;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+body {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  color: var(--text-main);
+  background: var(--light-bg);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, .sans, form {
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: var(--navy);
+}
+
+a { text-decoration: none; color: var(--gold); }
+a:hover { color: var(--gold-hover); }
+
+/* ==================== NAVIGATION ==================== */
+nav {
+  background: var(--navy);
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+nav .logo {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: 1px;
+}
+nav .logo span { color: var(--gold); }
+nav .nav-links { display: flex; gap: 25px; align-items: center; }
+nav .nav-links a {
+  color: #c9d6e4;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+nav .nav-links a:hover { color: var(--white); }
+.btn-nav {
+  background: var(--gold);
+  color: var(--navy) !important;
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 0.9rem;
+}
+.btn-nav:hover { background: var(--gold-hover); }
+
+/* ==================== HERO SECTION ==================== */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--deep-blue) 100%);
+  color: var(--white);
+  padding: 100px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--gold), #f39c12, var(--gold));
+}
+.hero h1 {
+  font-size: 3.5rem;
+  color: var(--white);
+  margin-bottom: 20px;
+  line-height: 1.1;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero h1 span { color: var(--gold); }
+.hero p {
+  font-size: 1.25rem;
+  color: #a8bfd4;
+  max-width: 700px;
+  margin: 0 auto 40px;
+  font-family: 'Segoe UI', sans-serif;
+}
+.btn-hero {
+  background: var(--gold);
+  color: var(--navy);
+  padding: 15px 40px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+  font-family: 'Segoe UI', sans-serif;
+}
+.btn-hero:hover { background: var(--gold-hover); transform: translateY(-2px); }
+
+/* ==================== CONTAINER & SECTIONS ==================== */
+.container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
+.section-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+}
+.section-subtitle {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 1.1rem;
+  margin-bottom: 60px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ==================== FEATURE GRID ==================== */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+.feature-card {
+  background: var(--white);
+  padding: 40px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  border-top: 4px solid var(--gold);
+  transition: transform 0.2s;
+}
+.feature-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+.feature-card .icon { font-size: 2rem; margin-bottom: 20px; display: block; }
+.feature-card h3 { font-size: 1.3rem; margin-bottom: 12px; }
+.feature-card p { color: var(--text-light); font-size: 0.95rem; font-family: 'Segoe UI', sans-serif; }
+
+/* ==================== RETIRED LAWYERS SECTION ==================== */
+.consultants-section {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+.consultants-content {
+  flex: 1;
+  min-width: 300px;
+  padding: 50px;
+}
+.consultants-content h2 { font-size: 2rem; margin-bottom: 20px; color: var(--navy); }
+.consultants-content p { margin-bottom: 20px; font-size: 1.05rem; }
+.consultants-content ul { margin-bottom: 30px; padding-left: 20px; font-family: 'Segoe UI', sans-serif; }
+.consultants-content li { margin-bottom: 10px; color: var(--text-main); }
+.consultants-content li strong { color: var(--navy); }
+.consultants-image {
+  flex: 1;
+  min-width: 300px;
+  background: linear-gradient(135deg, #d4af37 0%, #b5952f 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+.consultants-quote {
+  color: var(--navy);
+  font-size: 1.4rem;
+  font-style: italic;
+  text-align: center;
+  line-height: 1.4;
+  font-weight: bold;
+}
+
+/* ==================== ACTION BAR ==================== */
+.action-bar {
+  background: #e9ecef;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  border-bottom: 1px solid #d1dbe6;
+}
+.btn-action {
+  background: var(--white);
+  color: var(--navy);
+  border: 2px solid var(--navy);
+  padding: 10px 25px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Segoe UI', sans-serif;
+  transition: all 0.2s;
+}
+.btn-action:hover { background: var(--navy); color: var(--white); }
+
+/* ==================== MODAL & FORM ==================== */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; background: rgba(11, 30, 51, 0.8);
+  z-index: 2000; align-items: center; justify-content: center; padding: 20px;
+  backdrop-filter: blur(4px);
+}
+.modal-overlay.open { display: flex; }
+.modal-content {
+  background: var(--white); border-radius: 12px; max-width: 600px; width: 100%;
+  max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  padding: 40px; position: relative;
+}
+.modal-close {
+  position: absolute; top: 15px; right: 20px; font-size: 1.8rem;
+  background: none; border: none; cursor: pointer; color: var(--text-light);
+}
+.modal-close:hover { color: var(--navy); }
+.form-group { margin-bottom: 18px; }
+.form-group label {
+  display: block; font-size: 0.85rem; font-weight: 700; color: var(--navy);
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;
+}
+.form-group input, .form-group select {
+  width: 100%; padding: 10px 12px; border: 1px solid #d1dbe6;
+  border-radius: 6px; font-size: 0.95rem; font-family: 'Segoe UI', sans-serif;
+}
+.form-group input:focus, .form-group select:focus {
+  border-color: var(--gold); outline: none; box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+.btn-submit {
+  width: 100%; padding: 14px; background: var(--navy); color: var(--white);
+  border: none; border-radius: 6px; font-weight: 700; font-size: 1rem;
+  cursor: pointer; font-family: 'Segoe UI', sans-serif; margin-top: 10px;
+  transition: background 0.2s;
+}
+.btn-submit:hover { background: var(--deep-blue); }
+
+/* ==================== FOOTER ==================== */
+footer {
+  background: var(--navy);
+  color: #7a8fa5;
+  text-align: center;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 0.85rem;
+}
+footer strong { color: var(--white); }
+
+/* ==================== PRINT STYLES ==================== */
+@media print {
+  body { background: #fff; color: #000; font-size: 12pt; }
+  nav, .action-bar, .btn-hero, .btn-nav, .modal-overlay { display: none !important; }
+  .hero { background: none; color: #000; padding: 20px 0; border-bottom: 2px solid #000; }
+  .hero h1 { color: #000; }
+  .hero p { color: #333; }
+  .container { padding: 20px 0; }
+  .feature-grid { display: block; }
+  .feature-card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; margin-bottom: 20px; }
+  .consultants-section { border: 1px solid #ccc; box-shadow: none; }
+  .consultants-image { background: #eee; color: #000; }
+  .consultants-quote { color: #000; }
+  .consultants-content { padding: 20px; }
+  footer { background: none; color: #000; border-top: 1px solid #ccc; }
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2.2rem; }
+  nav { flex-direction: column; gap: 15px; }
+  .action-bar { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== NAVIGATION ==================== -->
+<nav>
+  <div class="logo">Generative<span>Lawyers</span></div>
+  <div class="nav-links">
+    <a onclick="document.getElementById('features').scrollIntoView()">Platform</a>
+    <a onclick="document.getElementById('consultants').scrollIntoView()">For Retired Counsel</a>
+    <button class="btn-nav" onclick="openDemoModal()">Request Demo</button>
+  </div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<header class="hero" id="home">
+  <h1>The Architecture of Justice.<br><span>Automated. Verified. Unstoppable.</span></h1>
+  <p>Generative Lawyers combines a state-of-the-art Grounded Legal Reasoning Engine with a contingency-fee operating model. We empower firms across the Caribbean, US, and Canada to take on high-value corporate litigation with zero upfront client risk.</p>
+  <button class="btn-hero" onclick="openDemoModal()">Schedule a Private Consultation</button>
+</header>
+
+<!-- ==================== ACTION BAR ==================== -->
+<div class="action-bar">
+  <button class="btn-action" onclick="window.print()">
+    <span>🖨️</span> Print This Proposal
+  </button>
+  <button class="btn-action" onclick="downloadProposal()">
+    <span>📄</span> Download Executive Summary (PDF)
+  </button>
+</div>
+
+<!-- ==================== FEATURES ==================== -->
+<section class="container" id="features">
+  <h2 class="section-title">Why Generative Lawyers is Second to None</h2>
+  <p class="section-subtitle">We built the infrastructure that other legal tech companies are still trying to invent.</p>
+  
+  <div class="feature-grid">
+    <div class="feature-card">
+      <span class="icon">🤖</span>
+      <h3>AI Case Intake & Assessment</h3>
+      <p>Our AI acts as your first-year associate. It conducts a structured, jurisdiction-specific intake interview, asks the hard questions, and generates court-ready drafts (Statement of Claim, Summons) based on standard forms.</p>
+    </div>
+    <div class="feature-card">
+      <span class="icon">⚖️</span>
+      <h3>Grounded Legal Reasoning</h3>
+      <p>No hallucinations. Our engine uses hard attention masking and a strict citation ledger. It refuses to generate an answer if it cannot trace every sentence back to a verified, authoritative legal source.</p>
+    </div>
+    <div class="feature-card">
+      <span class="icon">🛡️</span>
+      <h3>Compliance-First Architecture</h3>
+      <p>Built for the FTC and ABA Formal Opinion 512. Every AI output is gated by a "Supervising Counsel" workflow. Three-way trust account reconciliation is baked into the ledger.</p>
+    </div>
+    <div class="feature-card">
+      <span class="icon">🌍</span>
+      <h3>Cross-Jurisdictional Mastery</h3>
+      <p>Seamlessly navigate between Ontario (Form 14A), New York (CPLR), and the Eastern Caribbean Supreme Court (St. Kitts). The AI automatically adapts its questioning and drafting to local rules.</p>
+    </div>
+    <div class="feature-card">
+      <span class="icon">📊</span>
+      <h3>Contingency Fee Operating System</h3>
+      <p>Track accrued fees, calculate net recoveries, and manage trust accounts. We built the billing engine specifically for the contingency model, not just billable hours.</p>
+    </div>
+    <div class="feature-card">
+      <span class="icon">🤝</span>
+      <h3>Conflict Check & E-Signature</h3>
+      <p>Instant conflict checks against your matter database before intake begins. Generate and execute contingency fee agreements securely within the client portal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== RETIRED LAWYERS SECTION ==================== -->
+<section class="container" id="consultants" style="background: transparent;">
+  <div class="consultants-section">
+    <div class="consultants-content">
+      <h2>Your Experience is Irreplaceable.<br>Your Legacy Continues.</h2>
+      <p>Generative Lawyers is not here to replace human lawyers; we are here to empower them. We are actively recruiting retired partners, former judges, and senior counsel across the Caribbean and North America to join our <strong>AI Oversight & Consulting Board</strong>.</p>
+      <ul>
+        <li><strong>Supervise the AI:</strong> Act as the final "human in the loop." Review AI-generated court drafts, verify citation ledgers, and sign off on case strategies from the comfort of your home.</li>
+        <li><strong>Train the Engine:</strong> Consult with our development team to teach the AI the nuances of local practice, bench preferences, and the unwritten rules of corporate litigation in your jurisdiction.</li>
+        <li><strong>Lucrative Retainer:</strong> Earn a premium consulting fee or equity in the platform for your expertise, without the stress of running a firm or managing clients.</li>
+      </ul>
+      <button class="btn-hero" style="padding: 12px 30px; font-size: 1rem; background: var(--navy); color: var(--white);" onclick="openDemoModal()">Join the Oversight Board</button>
+    </div>
+    <div class="consultants-image">
+      <div class="consultants-quote">"I spent 40 years mastering the law. Now, I am teaching a machine to respect it. Generative Lawyers gave me a second career."<br><br>— Retired Senior Partner, Eastern Caribbean</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer id="contact">
+  <p><strong>Generative Lawyers</strong> — AI Attorney Platform</p>
+  <p style="margin-top: 10px;">Not a law firm. Legal services are provided by licensed attorneys. AI outputs are reviewed by Supervising Counsel.</p>
+  <p style="margin-top: 10px;">&copy; 2026 Generative Lawyers Inc. All rights reserved.</p>
+</footer>
+
+<!-- ==================== DEMO / CONSULTATION MODAL ==================== -->
+<div class="modal-overlay" id="demoModal" onclick="if(event.target===this)closeDemoModal()">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeDemoModal()">×</button>
+    <h2 style="margin-bottom: 10px; text-align: center;">Join the Oversight Board / Request Demo</h2>
+    <p style="text-align: center; color: var(--text-light); margin-bottom: 25px; font-family: 'Segoe UI', sans-serif; font-size: 0.9rem;">Complete the form below. Your submission will be emailed directly to our onboarding team.</p>
+    
+    <!-- FormSubmit.co is a free service that emails form data to an address without needing backend code -->
+    <form action="https://formsubmit.co/cuthbert@oecstrading.com" method="POST">
+      
+      <!-- FormSubmit Configuration -->
+      <input type="hidden" name="_subject" value="New Generative Lawyers Lead / Consultant Application!">
+      <input type="hidden" name="_captcha" value="false">
+      
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" name="Name" required placeholder="John Doe">
+      </div>
+
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" name="Email" required placeholder="john@lawfirm.com">
+      </div>
+
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" name="Phone" required placeholder="+1 (555) 123-4567">
+      </div>
+
+      <div class="form-group">
+        <label>WhatsApp Number (Include Country Code)</label>
+        <input type="tel" name="WhatsApp" placeholder="+1 (555) 987-6543">
+      </div>
+
+      <div class="form-group">
+        <label>Years of Legal Experience</label>
+        <select name="Experience" required>
+          <option value="">Select Experience Level</option>
+          <option value="1-5 Years">1 - 5 Years</option>
+          <option value="5-10 Years">5 - 10 Years</option>
+          <option value="10-20 Years">10 - 20 Years</option>
+          <option value="20+ Years">20+ Years (Retired / Senior Counsel)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Primary Jurisdiction</label>
+        <select name="Jurisdiction" required>
+          <option value="">Select Jurisdiction</option>
+          <option value="Caribbean - St. Kitts & Nevis">Caribbean - St. Kitts & Nevis</option>
+          <option value="Caribbean - Jamaica">Caribbean - Jamaica</option>
+          <option value="Caribbean - Trinidad & Tobago">Caribbean - Trinidad & Tobago</option>
+          <option value="Caribbean - BVI">Caribbean - British Virgin Islands</option>
+          <option value="Canada - Ontario">Canada - Ontario</option>
+          <option value="USA - New York">USA - New York</option>
+          <option value="Other">Other (Please specify in email)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Area of Law Specialty</label>
+        <select name="Specialty" required>
+          <option value="">Select Specialty</option>
+          <option value="Corporate Law / Litigation">Corporate Law / Litigation</option>
+          <option value="Contingency Fee / Personal Injury">Contingency Fee / Personal Injury</option>
+          <option value="Civil Litigation">Civil Litigation</option>
+          <option value="Trust & Estate">Trust & Estate</option>
+          <option value="General Practice">General Practice</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn-submit">Submit Application</button>
+    </form>
+  </div>
+</div>
+
+<!-- ==================== JAVASCRIPT ==================== -->
+<script>
+// Modal Functions
+function openDemoModal() {
+  document.getElementById('demoModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDemoModal() {
+  document.getElementById('demoModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Download Function
+function downloadProposal() {
+  const content = `
+GENERATIVE LAWYERS - EXECUTIVE SUMMARY
+======================================
+Date: ${new Date().toLocaleDateString()}
+
+THE ARCHITECTURE OF JUSTICE: AUTOMATED. VERIFIED. UNSTOPPABLE.
+
+Generative Lawyers combines a state-of-the-art Grounded Legal Reasoning Engine with a contingency-fee operating model. We empower firms across the Caribbean, US, and Canada to take on high-value corporate litigation with zero upfront client risk.
+
+CORE CAPABILITIES
+-----------------
+1. AI CASE INTAKE: Jurisdiction-specific questioning (Ontario, NY, St. Kitts) to build court-ready drafts.
+2. GROUNDED REASONING: Hard attention masking and citation ledgers eliminate hallucinations.
+3. COMPLIANCE FIRST: Built for ABA Formal Opinion 512 and FTC standards. Human sign-off required.
+4. CROSS-JURISDICTIONAL: Seamless navigation of local court forms (Form 14A, Summons, ECSRC).
+5. CONTINGENCY OS: Trust account reconciliation and fee accrual tracking.
+
+CONSULTING OPPORTUNITIES FOR RETIRED COUNSEL
+--------------------------------------------
+We invite retired partners and senior counsel to join our AI Oversight & Consulting Board.
+- Act as the final human-in-the-loop to review AI court drafts.
+- Train the engine on local nuances and bench preferences.
+- Earn a lucrative retainer or equity without managing a firm.
+
+Contact: cuthbert@oecstrading.com
+Visit: generativelawyers.com
+  `;
+
+  const blob = new Blob([content], { type: 'text/plain' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Generative_Lawyers_Executive_Summary.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  window.URL.revokeObjectURL(url);
+  
+  alert('Executive Summary downloaded successfully.');
+}
+</script>
+</body>
+</html>
